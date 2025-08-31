@@ -1,0 +1,19 @@
+cargo-features = ["codegen-backend"]
+[package]
+name = "hdr_release_watcher"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+octocrab = "0.44.1"
+reqwest = "0.12.23"
+tokio = { version = "1.47.1", features = ["full"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+debug = 0
+codegen-backend = "cranelift"
